@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PeripheralActivity"></activity>
+        <activity android:name=".ShowGraphActivity"></activity>
+        <activity android:name=".PeripheralActivity" />
         <activity android:name=".CentralActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
             var intentPeripheral = Intent(this, PeripheralActivity::class.java)
             startActivity(intentPeripheral)
         }
+        var buttonGraph = findViewById(R.id.button_graph) as Button
+        buttonGraph.setOnClickListener{
+            var intentPeripheral = Intent(this, ShowGraphActivity::class.java)
+            startActivity(intentPeripheral)
+        }
     }
 
 }
