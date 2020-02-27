@@ -28,10 +28,27 @@ class MainActivity : AppCompatActivity() {
             var intentPeripheral = Intent(this, PeripheralActivity::class.java)
             startActivity(intentPeripheral)
         }
+        // MP
         var buttonGraph = findViewById(R.id.button_graph) as Button
         buttonGraph.setOnClickListener{
-            var intentPeripheral = Intent(this, ShowGraphActivity::class.java)
-            startActivity(intentPeripheral)
+            var intentShow = Intent(this, ShowGraphActivity::class.java)
+            var DataArray = FloatArray(5)
+            DataArray[0] = 50f
+            DataArray[1] = 120f
+            DataArray[2] = 150f
+            DataArray[3] = 250f
+            DataArray[4] = 500f
+            intentShow.putExtra("DATA", DataArray)
+
+            /*
+            intentPeripheral.putExtra("DATA1", 100f)
+            intentPeripheral.putExtra("DATA2", 120f)
+            intentPeripheral.putExtra("DATA3", 150f)
+            intentPeripheral.putExtra("DATA4", 250f)
+            intentPeripheral.putExtra("DATA5", 500f)
+
+             */
+            startActivity(intentShow)
         }
     }
 

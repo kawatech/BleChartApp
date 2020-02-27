@@ -29,7 +29,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import java.util.UUID
+import java.util.*
 
 class CentralActivity : FragmentActivity(){
     private enum class RequestNum(var num: Int){
@@ -76,6 +76,7 @@ class CentralActivity : FragmentActivity(){
         buttonWrite.setOnClickListener {
             if(isConntected) {
                 writeOriginalByteArray = editTextWrite.text.toString().toByteArray(Charsets.UTF_8)
+         //       writeOriginalByteArray = Random().nextInt(100).toString().toByteArray(Charsets.UTF_8)
                 writeValueLengthTo = 0
                 isWritingData = true
                 writeText(resources.getString(R.string.ble_stop_sending_data).toByteArray(Charsets.UTF_8))
