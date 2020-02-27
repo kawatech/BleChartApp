@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         buttonGraph.setOnClickListener{
             var intentShow = Intent(this, ShowGraphActivity::class.java)
             var DataArray = FloatArray(5)
-            DataArray[0] = 50f
-            DataArray[1] = 120f
-            DataArray[2] = 150f
-            DataArray[3] = 250f
-            DataArray[4] = 500f
+            DataArray[0] = Random().nextInt(500).toString().toFloat()
+            DataArray[1] = Random().nextInt(500).toString().toFloat()
+            DataArray[2] = Random().nextInt(500).toString().toFloat()
+            DataArray[3] = Random().nextInt(500).toString().toFloat()
+            DataArray[4] = Random().nextInt(500).toString().toFloat()
             intentShow.putExtra("DATA", DataArray)
 
             /*

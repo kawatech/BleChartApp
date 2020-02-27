@@ -59,6 +59,22 @@ class PeripheralActivity : FragmentActivity() {
         buttonUpdate.setOnClickListener{
             updateValue(editUpdateValue?.text.toString())
         }
+
+
+        var buttonSend = findViewById(R.id.button_peripheral_send) as Button
+        buttonSend.setOnClickListener{
+            val s1 = Random().nextInt(500).toString()
+            val s2 = Random().nextInt(500).toString()
+            val s3 = Random().nextInt(500).toString()
+            val s4 = Random().nextInt(500).toString()
+            val s5 = Random().nextInt(500).toString()
+            val st = s1 + "," + s2 + "," + s3 + "," + s4+ "," + s5
+            updateValue(st)
+        }
+
+
+
+
         bleManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         bleAdapter = bleManager!!.adapter
 

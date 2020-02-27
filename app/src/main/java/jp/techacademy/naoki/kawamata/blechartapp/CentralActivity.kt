@@ -3,29 +3,19 @@ package jp.techacademy.naoki.kawamata.blechartapp
 import android.Manifest
 import android.annotation.TargetApi
 import android.app.Activity
-import android.os.Bundle
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothGatt
-import android.bluetooth.BluetoothGattCallback
-import android.bluetooth.BluetoothGattCharacteristic
-import android.bluetooth.BluetoothGattDescriptor
-import android.bluetooth.BluetoothManager
-import android.bluetooth.BluetoothProfile
-import android.bluetooth.le.BluetoothLeScanner
-import android.bluetooth.le.ScanCallback
-import android.bluetooth.le.ScanFilter
-import android.bluetooth.le.ScanSettings
-import android.bluetooth.le.ScanResult
+import android.bluetooth.*
+import android.bluetooth.le.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Bundle
 import android.os.ParcelUuid
 import android.support.v4.app.FragmentActivity
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -89,8 +79,36 @@ class CentralActivity : FragmentActivity(){
             if(isConntected){
                 readText()
             }
-
         }
+
+
+
+        var buttonShow = findViewById(R.id.button_central_show) as Button
+        buttonShow.setOnClickListener{
+            if(isConntected){
+                val sdata = textReceived?.text.toString()
+           //     val sdata ="100,200,300,400,500"            // テスト用のダミーデータ
+            //    var resultArray: Array<String?> = arrayOfNulls( 5 )       // 不要
+                var resultArray = sdata.split(",")
+                var DataArray = FloatArray(5)
+                DataArray[0] = resultArray[0].toFloat()
+                DataArray[1] = resultArray[1].toFloat()
+                DataArray[2] = resultArray[2].toFloat()
+                DataArray[3] = resultArray[3].toFloat()
+                DataArray[4] = resultArray[4].toFloat()
+
+                var intentShow = Intent(this, ShowGraphActivity::class.java)
+                intentShow.putExtra("DATA", DataArray)
+                startActivity(intentShow)
+            }
+        }
+
+
+
+
+
+
+
         // OS ver.6.0以降なら権限確認.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestBlePermission()
@@ -290,6 +308,25 @@ class CentralActivity : FragmentActivity(){
                             textReceived!!.text = updateValue?.toString(Charsets.UTF_8)
                             updateValue = emptyArray<Byte>().toByteArray()
                             isValueUpdated = false
+
+
+                            val sdata = textReceived?.text.toString()
+                            //     val sdata ="100,200,300,400,500"            // テスト用のダミーデータ
+                            //    var resultArray: Array<String?> = arrayOfNulls( 5 )       // 不要
+                            var resultArray = sdata.split(",")
+                            var DataArray = FloatArray(5)
+                            DataArray[0] = resultArray[0].toFloat()
+                            DataArray[1] = resultArray[1].toFloat()
+                            DataArray[2] = resultArray[2].toFloat()
+                            DataArray[3] = resultArray[3].toFloat()
+                            DataArray[4] = resultArray[4].toFloat()
+
+                            var intentShow = Intent(applicationContext, ShowGraphActivity::class.java)
+                            intentShow.setFlags(FLAG_ACTIVITY_CLEAR_TOP)
+                            intentShow.addFlags(FLAG_ACTIVITY_SINGLE_TOP)
+                            intentShow.putExtra("DATA", DataArray)
+                            startActivity(intentShow)
+
                         }
                         else{
                             textRead!!.text = readValue?.toString(Charsets.UTF_8)
