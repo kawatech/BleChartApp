@@ -19,24 +19,23 @@ class ShowGraphActivity : AppCompatActivity() {
         val dataSets = ArrayList<LineDataSet>()
 
         // MP データを受信する
-        /*
-        val data1 = intent.getFloatExtra("DATA1", 1f)
-        val data2 = intent.getFloatExtra("DATA2", 1f)
-        val data3 = intent.getFloatExtra("DATA3", 1f)
-        val data4 = intent.getFloatExtra("DATA4", 1f)
-        val data5 = intent.getFloatExtra("DATA5", 1f)
-*/
 
         val rDataArray = intent.getFloatArrayExtra("DATA")
 
 
-        // X���̒l
+        // X軸の値
         val xValues = ArrayList<String>()
         xValues.add("No.1")
         xValues.add("No.2")
         xValues.add("No.3")
         xValues.add("No.4")
         xValues.add("No.5")
+        xValues.add("No.6")
+        xValues.add("No.7")
+        xValues.add("No.8")
+        xValues.add("No.9")
+        xValues.add("No.10")
+
 
         // value
         val value = ArrayList<Entry>()
@@ -45,6 +44,11 @@ class ShowGraphActivity : AppCompatActivity() {
         value.add(Entry(rDataArray[2], 2))
         value.add(Entry(rDataArray[3], 3))
         value.add(Entry(rDataArray[4], 4))
+        value.add(Entry(rDataArray[5], 5))
+        value.add(Entry(rDataArray[6], 6))
+        value.add(Entry(rDataArray[7], 7))
+        value.add(Entry(rDataArray[8], 8))
+        value.add(Entry(rDataArray[9], 9))
 
         val valueDataSet = LineDataSet(value, "sample")
         dataSets.add(valueDataSet)

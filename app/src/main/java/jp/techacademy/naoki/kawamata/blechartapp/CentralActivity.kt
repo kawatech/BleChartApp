@@ -9,7 +9,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
-import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Build
@@ -82,20 +81,25 @@ class CentralActivity : FragmentActivity(){
         }
 
 
-
+// MP SHOW GRAPHボタンでサンプルデータのグラフ画面を表示する
         var buttonShow = findViewById(R.id.button_central_show) as Button
         buttonShow.setOnClickListener{
             if(isConntected){
-                val sdata = textReceived?.text.toString()
-           //     val sdata ="100,200,300,400,500"            // テスト用のダミーデータ
-            //    var resultArray: Array<String?> = arrayOfNulls( 5 )       // 不要
+            //    val sdata = textReceived?.text.toString()
+                val sdata ="90,100,111,125,137,150,175,250,375,500"            // テスト用のダミーデータ
                 var resultArray = sdata.split(",")
-                var DataArray = FloatArray(5)
+
+                var DataArray = FloatArray(10)
                 DataArray[0] = resultArray[0].toFloat()
                 DataArray[1] = resultArray[1].toFloat()
                 DataArray[2] = resultArray[2].toFloat()
                 DataArray[3] = resultArray[3].toFloat()
                 DataArray[4] = resultArray[4].toFloat()
+                DataArray[5] = resultArray[5].toFloat()
+                DataArray[6] = resultArray[6].toFloat()
+                DataArray[7] = resultArray[7].toFloat()
+                DataArray[8] = resultArray[8].toFloat()
+                DataArray[9] = resultArray[9].toFloat()
 
                 var intentShow = Intent(this, ShowGraphActivity::class.java)
                 intentShow.putExtra("DATA", DataArray)
@@ -309,24 +313,33 @@ class CentralActivity : FragmentActivity(){
                             updateValue = emptyArray<Byte>().toByteArray()
                             isValueUpdated = false
 
-
+                    // MP ここからデータを解釈してグラフの画面を出す。
                             val sdata = textReceived?.text.toString()
                             //     val sdata ="100,200,300,400,500"            // テスト用のダミーデータ
-                            //    var resultArray: Array<String?> = arrayOfNulls( 5 )       // 不要
-                            var resultArray = sdata.split(",")
-                            var DataArray = FloatArray(5)
-                            DataArray[0] = resultArray[0].toFloat()
-                            DataArray[1] = resultArray[1].toFloat()
-                            DataArray[2] = resultArray[2].toFloat()
-                            DataArray[3] = resultArray[3].toFloat()
-                            DataArray[4] = resultArray[4].toFloat()
+                            // sdataにカンマがあればグラフを書く
+                            val regex = Regex(",")
+                            val result = regex.containsMatchIn(sdata)
+                            if (result) {
+                                var resultArray = sdata.split(",")
+                                var DataArray = FloatArray(10)
+                                DataArray[0] = resultArray[0].toFloat()
+                                DataArray[1] = resultArray[1].toFloat()
+                                DataArray[2] = resultArray[2].toFloat()
+                                DataArray[3] = resultArray[3].toFloat()
+                                DataArray[5] = resultArray[4].toFloat()
+                                DataArray[6] = resultArray[5].toFloat()
+                                DataArray[7] = resultArray[6].toFloat()
+                                DataArray[8] = resultArray[7].toFloat()
+                                DataArray[8] = resultArray[8].toFloat()
+                                DataArray[9] = resultArray[9].toFloat()
 
-                            var intentShow = Intent(applicationContext, ShowGraphActivity::class.java)
-                            intentShow.setFlags(FLAG_ACTIVITY_CLEAR_TOP)
-                            intentShow.addFlags(FLAG_ACTIVITY_SINGLE_TOP)
-                            intentShow.putExtra("DATA", DataArray)
-                            startActivity(intentShow)
-
+                                var intentShow =
+                                    Intent(applicationContext, ShowGraphActivity::class.java)
+                                intentShow.setFlags(FLAG_ACTIVITY_CLEAR_TOP)
+                                //       intentShow.addFlags(FLAG_ACTIVITY_SINGLE_TOP)
+                                intentShow.putExtra("DATA", DataArray)
+                                startActivity(intentShow)
+                            }
                         }
                         else{
                             textRead!!.text = readValue?.toString(Charsets.UTF_8)
@@ -341,6 +354,7 @@ class CentralActivity : FragmentActivity(){
                     }
                     else{
                         readValue = readValue!!.plus(characteristic.value)
+
                     }
 
                     // 送信完了の文字列が届くまで読み込みリクエストを送る.

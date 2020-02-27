@@ -60,7 +60,7 @@ class PeripheralActivity : FragmentActivity() {
             updateValue(editUpdateValue?.text.toString())
         }
 
-
+// MP 500までの乱数を発生させ、カンマで区切った文字列を作成する
         var buttonSend = findViewById(R.id.button_peripheral_send) as Button
         buttonSend.setOnClickListener{
             val s1 = Random().nextInt(500).toString()
@@ -68,7 +68,13 @@ class PeripheralActivity : FragmentActivity() {
             val s3 = Random().nextInt(500).toString()
             val s4 = Random().nextInt(500).toString()
             val s5 = Random().nextInt(500).toString()
-            val st = s1 + "," + s2 + "," + s3 + "," + s4+ "," + s5
+            val s6 = Random().nextInt(500).toString()
+            val s7 = Random().nextInt(500).toString()
+            val s8 = Random().nextInt(500).toString()
+            val s9 = Random().nextInt(500).toString()
+            val s10 = Random().nextInt(500).toString()
+            val st = s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5 + "," + s6 + "," + s7 + "," + s8 + "," + s9 + "," + s10
+
             updateValue(st)
         }
 

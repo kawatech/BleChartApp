@@ -12,7 +12,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Central"
+        android:text="メイン側"
         android:id="@+id/button_central"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
@@ -20,7 +20,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Peripheral"
+        android:text="センサ側"
         android:id="@+id/button_peripheral"
         android:layout_alignTop="@+id/button_central"
         android:layout_alignParentEnd="true" />
@@ -28,7 +28,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Grahp"
+        android:text="グラフのテスト"
         android:id="@+id/button_graph"
         android:layout_below="@+id/button_central"
         android:layout_centerInParent="true" />

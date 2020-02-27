@@ -33,12 +33,18 @@ class MainActivity : AppCompatActivity() {
         var buttonGraph = findViewById(R.id.button_graph) as Button
         buttonGraph.setOnClickListener{
             var intentShow = Intent(this, ShowGraphActivity::class.java)
-            var DataArray = FloatArray(5)
+            var DataArray = FloatArray(10)
             DataArray[0] = Random().nextInt(500).toString().toFloat()
             DataArray[1] = Random().nextInt(500).toString().toFloat()
             DataArray[2] = Random().nextInt(500).toString().toFloat()
             DataArray[3] = Random().nextInt(500).toString().toFloat()
             DataArray[4] = Random().nextInt(500).toString().toFloat()
+            DataArray[5] = Random().nextInt(500).toString().toFloat()
+            DataArray[6] = Random().nextInt(500).toString().toFloat()
+            DataArray[7] = Random().nextInt(500).toString().toFloat()
+            DataArray[8] = Random().nextInt(500).toString().toFloat()
+            DataArray[9] = Random().nextInt(500).toString().toFloat()
+
             intentShow.putExtra("DATA", DataArray)
 
             /*
